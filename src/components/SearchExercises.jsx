@@ -1,13 +1,43 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
+//API
+import { fetchData, exerciseOptions } from '../utils/fetchData';
 //MUI
 import  { Box, Stack, Typography, Button, TextField } from '@mui/material';
 
 export default function SearchExercises() {
-  const [search, setSearch] = useState('')
+  const [searchTerm, setSearchTerm] = useState('')
+  const [exercises, setExercises] = useState([])
+  const [bodyParts, setBodyParts] = useState([])
+
+  useEffect(() => {
+    //Fetching bodyParts data
+    const fetchExerciseBodyPartsData = async () => {
+      const bodyPartsData = await fetchData( 'https://exercisedb.p.rapidapi.com/exercises/bodyPartList', exerciseOptions)
+      setBodyParts(['all', ...bodyPartsData])
+    } 
+    fetchExerciseBodyPartsData()
+  }, [])
 
   const handleSearch = async () => {
-    if(search) {
-      // const exerciseData = await fetchData()
+    if(searchTerm) {
+      //Fetching data
+      const exerciseData = await fetchData( 'https://exercisedb.p.rapidapi.com/exercises', exerciseOptions)
+
+      //Filtering data from api
+      const searchExercises = exerciseData.filter((exercise) => {
+        return (
+          exercise.name.toLowerCase().includes(searchTerm)
+          || exercise.bodyPart.toLowerCase().includes(searchTerm)
+          || exercise.equipment.toLowerCase().includes(searchTerm)
+          || exercise.target.toLowerCase().includes(searchTerm)
+        )
+      })
+
+      //Clearing searchTerm
+      setSearchTerm('')
+
+      //Setting filtered exercises to state
+      setExercises(searchExercises)
     }
   }
 
@@ -46,8 +76,8 @@ export default function SearchExercises() {
             borderRadius: '40px'
           }}
           height='76px'
-          value={search}
-          onChange={(e) => {setSearch(e.target.value.toLowerCase())}}
+          value={searchTerm}
+          onChange={(e) => {setSearchTerm(e.target.value.toLowerCase())}}
           placeholder='Search Exercises'
           type='text'
         />
