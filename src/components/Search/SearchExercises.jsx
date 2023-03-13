@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 //API
-import { fetchData, exerciseOptions } from '../utils/fetchData';
+import { fetchData, exerciseOptions } from '../../utils/fetchData';
 //MUI
 import  { Box, Stack, Typography, Button, TextField } from '@mui/material';
+//Components
+import HorizontalScrollBar from './HorizontalScrollBar';
 
-export default function SearchExercises() {
+export default function SearchExercises({ bodyPart, setBodyPart, setExercises }) {
   const [searchTerm, setSearchTerm] = useState('')
-  const [exercises, setExercises] = useState([])
   const [bodyParts, setBodyParts] = useState([])
 
   useEffect(() => {
@@ -59,7 +60,8 @@ export default function SearchExercises() {
       >
         awesome exercises you <br /> should know
       </Typography>
-
+      
+      {/* Search box */}
       <Box
         position='relative'
         mb='72px'
@@ -98,6 +100,21 @@ export default function SearchExercises() {
         >
           Search
         </Button>
+      </Box>
+
+      {/* BodyParts categories box */}
+      <Box
+        sx={{
+          position: 'relative',
+          width: '100%',
+          p: '20px',
+        }}
+      >
+        <HorizontalScrollBar
+          data={bodyParts}
+          bodyPart={bodyPart}
+          setBodyPart={setBodyPart}
+        />
       </Box>
     </Stack>
   )
