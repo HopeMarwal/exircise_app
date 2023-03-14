@@ -39,8 +39,6 @@ export default function BodyPartCard({ item, bodyPart, setBodyPart }) {
         fontWeight='bold'
         color='#3a1212'
         textTransform='capitalize'
-
-
       >
         {item}
       </Typography>
