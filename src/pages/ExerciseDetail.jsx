@@ -4,6 +4,7 @@ export default function ExerciseDetail() {
     const { id } = useParams()
   return (
     <div>
+      {id}
     </div>
   )
 }

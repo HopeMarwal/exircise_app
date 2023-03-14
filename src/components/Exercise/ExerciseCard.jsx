@@ -1,5 +1,5 @@
 //MUI
-import { Botton, Button, Stack, Typography } from "@mui/material"
+import { Button, Stack, Typography } from "@mui/material"
 //Router
 import { Link } from "react-router-dom"
 
