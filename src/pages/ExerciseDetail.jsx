@@ -30,7 +30,7 @@ export default function ExerciseDetail() {
       //Fetch video detail
       const youtubeSearchUrl = 'https://youtube-search-and-download.p.rapidapi.com'
       const videoData = await fetchData(`${youtubeSearchUrl}/search?query=${dataDetail.name}`, videoOptions)
-      setVideoDetail(videoData)
+      setVideoDetail(videoData.contents)
     }
 
     fetchExerciseDetail();
