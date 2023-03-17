@@ -6,13 +6,6 @@ export const exerciseOptions = {
   }
 };
 
-export const fetchData = async (url, options) => {
-  const response = await fetch(url, options); 
-  const data = await response.json();
-
-  return data;
-}
-
 export const videoOptions = {
   method: 'GET',
   headers: {
@@ -20,3 +13,10 @@ export const videoOptions = {
     'X-RapidAPI-Host': 'youtube-search-and-download.p.rapidapi.com'
   }
 };
+
+export const fetchData = async (url, options) => {
+  const response = await fetch(url, options); 
+  const data = await response.json();
+
+  return data;
+}

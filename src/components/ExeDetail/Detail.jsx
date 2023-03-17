@@ -6,7 +6,7 @@ import TargetImage from '../../assets/icons/target.png';
 import EquipmentImage from '../../assets/icons/equipment.png';
 
 
-export default function Detail({ exerciseData}) {
+export default function Detail({ exerciseData }) {
   const { bodyPart, gifUrl, equipment, name, target } = exerciseData;
   const extraDetail = [
     {
@@ -43,7 +43,7 @@ export default function Detail({ exerciseData}) {
       {/* Info detail exercise */}
       <Stack sx={{ gap: { lg: '35px', sm: '20px'}}}>
 
-        <Typography variant='h3'>
+        <Typography variant='h3' textTransform='capitalize'>
           {name}
         </Typography>
 
@@ -52,7 +52,7 @@ export default function Detail({ exerciseData}) {
         </Typography>
 
         {/* Map extraDetail */}
-        {extraDetail.map((item) => (
+        {name && equipment && target && extraDetail.map((item) => (
           <Stack 
             key={item.name}
             direction='row'
