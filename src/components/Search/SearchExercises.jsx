@@ -111,6 +111,7 @@ export default function SearchExercises({ bodyPart, setBodyPart, setExercises })
         }}
       >
         <HorizontalScrollBar
+          isBodyParts
           data={bodyParts}
           bodyPart={bodyPart}
           setBodyPart={setBodyPart}

@@ -2,10 +2,11 @@
 import { Box } from '@mui/material';
 //Components
 import BodyPartCard from './BodyPartCard';
+import ExerciseCard from '../Exercise/ExerciseCard'
 //React
 import { useRef, useEffect } from 'react';
 
-export default function HorizontalScrollBar({ data, bodyPart, setBodyPart }) {
+export default function HorizontalScrollBar({ data, bodyPart, setBodyPart, isBodyParts }) {
   const scrollMenu = useRef()
 
   useEffect(() => {
@@ -28,11 +29,15 @@ export default function HorizontalScrollBar({ data, bodyPart, setBodyPart }) {
             title={item.id || item }
             m='0 40px'
           >
-            <BodyPartCard 
-              item={item}
-              bodyPart={bodyPart}
-              setBodyPart={setBodyPart}
-            />
+            {
+              isBodyParts 
+              ? <BodyPartCard 
+                item={item}
+                bodyPart={bodyPart}
+                setBodyPart={setBodyPart}
+              />
+              : <ExerciseCard exerciseItem={item} />
+            }
           </Box>
         ))
       }
