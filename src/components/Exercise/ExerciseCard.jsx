@@ -4,7 +4,6 @@ import { Button, Stack, Typography } from "@mui/material"
 import { Link } from "react-router-dom"
 
 export default function ExerciseCard({ exerciseItem }) {
-
   return (
     <Link className="exercise-card" to={`/exercise/${exerciseItem.id}`}>
       {/* Gif image */}

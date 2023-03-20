@@ -23,6 +23,8 @@ export default function ExerciseDetail() {
 
   //Fetch Data
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
     const fetchExerciseDetail = async () => {
       //Fetch exercise detail
       const exerciseDbUrl = `https://exercisedb.p.rapidapi.com`
