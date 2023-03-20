@@ -11,7 +11,7 @@ import { useExerciseContext } from '../../context/ExerciseContext'
 
 export default function SearchExercises() {
   //Context
-  const { setExercises } = useExerciseContext()
+  const { handleSearch } = useExerciseContext()
   //State
   const [searchTerm, setSearchTerm] = useState('')
   const [bodyParts, setBodyParts] = useState([])
@@ -25,26 +25,11 @@ export default function SearchExercises() {
     fetchExerciseBodyPartsData()
   }, [])
 
-  const handleSearch = async () => {
+  const handleSearchByTerm = async () => {
     if(searchTerm) {
-      //Fetching data
-      const exerciseData = await fetchData( 'https://exercisedb.p.rapidapi.com/exercises', exerciseOptions)
-
-      //Filtering data from api
-      const searchExercises = exerciseData.filter((exercise) => {
-        return (
-          exercise.name.toLowerCase().includes(searchTerm)
-          || exercise.bodyPart.toLowerCase().includes(searchTerm)
-          || exercise.equipment.toLowerCase().includes(searchTerm)
-          || exercise.target.toLowerCase().includes(searchTerm)
-        )
-      })
-
+      handleSearch(searchTerm)
       //Clearing searchTerm
       setSearchTerm('')
-
-      //Setting filtered exercises to state
-      setExercises(searchExercises)
     }
   }
 
@@ -102,7 +87,7 @@ export default function SearchExercises() {
             position: 'absolute',
             right: '0'
           }}
-          onClick={handleSearch}
+          onClick={handleSearchByTerm}
         >
           Search
         </Button>

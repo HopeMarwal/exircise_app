@@ -22,13 +22,33 @@ export const ExerciseContext = ({ children }) => {
 
   }, [bodyPart])
 
+  const handleSearch = async (searchTerm) => {
+    console.log(searchTerm)
+    //Fetching data
+    const exerciseData = await fetchData( 'https://exercisedb.p.rapidapi.com/exercises', exerciseOptions)
+
+    //Filtering data from api
+    const searchExercises = exerciseData.filter((exercise) => {
+      return (
+        exercise.name.toLowerCase().includes(searchTerm)
+        || exercise.bodyPart.toLowerCase().includes(searchTerm)
+        || exercise.equipment.toLowerCase().includes(searchTerm)
+        || exercise.target.toLowerCase().includes(searchTerm)
+      )
+    })
+    //Setting filtered exercises to state
+    setExercises(searchExercises)
+  }
+
+
   return (
     <Context.Provider
       value={{
         exercises,
         bodyPart,
         setBodyPart,
-        setExercises
+        setExercises,
+        handleSearch
       }}
     >
       {children}

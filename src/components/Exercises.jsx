@@ -8,10 +8,9 @@ import ExerciseCard from './Exercise/ExerciseCard';
 //Context
 import { useExerciseContext } from '../context/ExerciseContext'
 
-export default function Exercises(props) {
-
+export default function Exercises() {
   //Context
-  const {exercises} = useExerciseContext();
+  const { exercises } = useExerciseContext();
   //State
   const [currentPage, setCurrentPage] = useState(1)
   //Component variables
