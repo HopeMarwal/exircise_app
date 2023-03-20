@@ -6,7 +6,7 @@ import ExerciseCard from '../Exercise/ExerciseCard'
 //React
 import { useRef, useEffect } from 'react';
 
-export default function HorizontalScrollBar({ data, bodyPart, setBodyPart, isBodyParts }) {
+export default function HorizontalScrollBar({ data, isBodyParts }) {
   const scrollMenu = useRef()
 
   useEffect(() => {
@@ -19,6 +19,7 @@ export default function HorizontalScrollBar({ data, bodyPart, setBodyPart, isBod
     }
   });
   }, [])
+  
   return (
     <div className='horizontal-scroll-menu' ref={scrollMenu} > 
       {
@@ -31,11 +32,7 @@ export default function HorizontalScrollBar({ data, bodyPart, setBodyPart, isBod
           >
             {
               isBodyParts 
-              ? <BodyPartCard 
-                item={item}
-                bodyPart={bodyPart}
-                setBodyPart={setBodyPart}
-              />
+              ? <BodyPartCard item={item}/>
               : <ExerciseCard exerciseItem={item} />
             }
           </Box>

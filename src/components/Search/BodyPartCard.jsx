@@ -2,8 +2,13 @@
 import { Stack, Typography } from "@mui/material"
 //Icon
 import Icon from '../../assets/icons/gym.png'
+//Context
+import { useExerciseContext } from '../../context/ExerciseContext'
 
-export default function BodyPartCard({ item, bodyPart, setBodyPart }) {
+export default function BodyPartCard({ item }) {
+
+  const { bodyPart, setBodyPart } = useExerciseContext()
+
   const handleClick = (item) => {
     setBodyPart(item)
     window.scrollTo({

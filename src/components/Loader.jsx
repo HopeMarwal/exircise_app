@@ -6,7 +6,7 @@ export default function Loader() {
     <Stack
       direction='row'
       justifyContent='center'
-      alignItem='center'
+      alignItems='center'
       width='100%'
     >
       <InfinitySpin color='gray' />

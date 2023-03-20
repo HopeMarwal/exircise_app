@@ -5,8 +5,14 @@ import { fetchData, exerciseOptions } from '../../utils/fetchData';
 import  { Box, Stack, Typography, Button, TextField } from '@mui/material';
 //Components
 import HorizontalScrollBar from './HorizontalScrollBar';
+//Context
+import { useExerciseContext } from '../../context/ExerciseContext'
 
-export default function SearchExercises({ bodyPart, setBodyPart, setExercises }) {
+
+export default function SearchExercises() {
+  //Context
+  const { setExercises } = useExerciseContext()
+  //State
   const [searchTerm, setSearchTerm] = useState('')
   const [bodyParts, setBodyParts] = useState([])
 
@@ -113,8 +119,6 @@ export default function SearchExercises({ bodyPart, setBodyPart, setExercises })
         <HorizontalScrollBar
           isBodyParts
           data={bodyParts}
-          bodyPart={bodyPart}
-          setBodyPart={setBodyPart}
         />
       </Box>
     </Stack>

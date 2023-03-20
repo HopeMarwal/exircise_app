@@ -1,16 +1,17 @@
 //React
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 //MUI
 import Pagination from '@mui/material/Pagination';
 import { Box, Stack, Typography } from '@mui/material';
-//API
-import { exerciseOptions, fetchData } from  '../utils/fetchData';
 //Components
 import ExerciseCard from './Exercise/ExerciseCard';
+//Context
+import { useExerciseContext } from '../context/ExerciseContext'
 
 export default function Exercises(props) {
-  //Props
-  const  {exercises, bodyPart, setExercises} = props;
+
+  //Context
+  const {exercises} = useExerciseContext();
   //State
   const [currentPage, setCurrentPage] = useState(1)
   //Component variables
@@ -18,22 +19,6 @@ export default function Exercises(props) {
   const indexOfLastExercise = currentPage * exercisesPerPage
   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage
   const currentExercises = exercises?.slice(indexOfFirstExercise, indexOfLastExercise)
-
-  //useEffect
-  useEffect(() => {
-
-    const fetchDataExerciseData = async () => {
-      let exercisesData = []
-      if( bodyPart === 'all') {
-        exercisesData = await fetchData( 'https://exercisedb.p.rapidapi.com/exercises', exerciseOptions)
-      } else {
-        exercisesData = await fetchData(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`, exerciseOptions)
-      }
-      setExercises(exercisesData)
-    }
-    fetchDataExerciseData()
-
-  }, [bodyPart])
 
   //Functions
   const handleChangePage = (e, value) => {
